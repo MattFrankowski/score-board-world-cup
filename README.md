@@ -9,6 +9,11 @@ Library's main features:
 - Updating match score
 - Fetching matches summary sorted by total score.
 
+Constraints:
+- User cannot create the match associated with the team that is already in game
+- User cannot remove the match that does not exist
+- User cannot update the score of the match that does not exist.
+
 The library's entrypoint is a factory method located in `ScoreBoardProvider` that returns an implementation of `ScoreBoard` interface:
 ```java
 ScoreBoard scoreBoard = ScoreBoardProvider.create();
@@ -28,8 +33,8 @@ scoreBoard.finishMatch("Poland", "Argentina");
 ```
 
 `MatchInfo` instance is a value object that contains information about the match:
-- MatchUp
-- Score
+- `MatchUp`
+- `Score`
 
 Example:
 ```java
