@@ -24,7 +24,8 @@ class WorldCupScoreBoard implements ScoreBoard {
 
     @Override
     public void finishMatch(String homeTeamName, String awayTeamName) {
-
+        MatchUp matchUp = new MatchUp(homeTeamName, awayTeamName);
+        matches.remove(matchUp);
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ScoreBoardTest {
+class WorldCupScoreBoardTest {
     @Test
     void should_start_a_new_match() {
         // given
