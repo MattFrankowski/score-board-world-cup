@@ -83,7 +83,7 @@ class WorldCupScoreBoardTest {
         List<MatchInfo> resultSummary = scoreBoard.getMatchesSummary();
 
         // then
-        assertEquals(resultSummary.get(0).getScore().getAwayTeamScore(), 0);
-        assertEquals(resultSummary.get(0).getScore().getHomeTeamScore(), 1);
+        assertEquals(resultSummary.get(0).getScore().getHomeTeamScore(), 0);
+        assertEquals(resultSummary.get(0).getScore().getAwayTeamScore(), 1);
     }
 }
