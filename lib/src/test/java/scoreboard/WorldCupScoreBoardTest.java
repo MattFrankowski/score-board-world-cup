@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import scoreboard.match.MatchInfo;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,5 +86,20 @@ class WorldCupScoreBoardTest {
         // then
         assertEquals(resultSummary.get(0).getScore().getHomeTeamScore(), 0);
         assertEquals(resultSummary.get(0).getScore().getAwayTeamScore(), 1);
+    }
+
+    @Test
+    void should_not_permit_to_update_nonexistent_match_score() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+
+        // when & then
+        Exception result = assertThrows(IllegalStateException.class,
+                                        () -> scoreBoard.updateScore("Poland", "Argentina",
+                                                       1, 1));
+        List<MatchInfo> matchInfo = scoreBoard.getMatchesSummary();
+
+        assertEquals(matchInfo.size(), 0);
+        assertEquals(result.getMessage(), "Cannot update score for non-existent match: Poland - Argentina");
     }
 }
