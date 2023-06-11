@@ -10,4 +10,8 @@ public class MatchInfo {
         this.matchUp = scorboardEntry.getKey();
         this.score = scorboardEntry.getValue();
     }
+
+    public Score getScore() {
+        return score;
+    }
 }

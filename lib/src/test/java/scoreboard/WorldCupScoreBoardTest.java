@@ -2,6 +2,7 @@ package scoreboard;
 
 import org.junit.jupiter.api.Test;
 import scoreboard.match.MatchInfo;
+import scoreboard.match.Score;
 
 import java.util.List;
 
@@ -56,5 +57,19 @@ class WorldCupScoreBoardTest {
         Exception result = assertThrows(IllegalStateException.class,
                                         () -> scoreBoard.finishMatch("Poland", "Argentina"));
         assertEquals(result.getMessage(), "Cannot finish non-existent match: Poland - Argentina");
+    }
+
+    @Test
+    void should_set_initial_score_to_zero() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+
+        // when
+        scoreBoard.startMatch("Poland", "Argentina");
+        List<MatchInfo> resultSummary = scoreBoard.getMatchesSummary();
+
+        // then
+        assertEquals(resultSummary.get(0).getScore().getAwayTeamScore(), 0);
+        assertEquals(resultSummary.get(0).getScore().getHomeTeamScore(), 0);
     }
 }
