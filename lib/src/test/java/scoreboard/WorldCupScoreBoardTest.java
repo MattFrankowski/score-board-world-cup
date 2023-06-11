@@ -46,4 +46,15 @@ class WorldCupScoreBoardTest {
         // then
         assertEquals(resultSummary.size(), 0);
     }
+
+    @Test
+    void should_not_permit_to_finish_nonexistent_match() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+
+        // when & then
+        Exception result = assertThrows(IllegalStateException.class,
+                                        () -> scoreBoard.finishMatch("Poland", "Argentina"));
+        assertEquals(result.getMessage(), "Cannot finish non-existent match: Poland - Argentina");
+    }
 }
