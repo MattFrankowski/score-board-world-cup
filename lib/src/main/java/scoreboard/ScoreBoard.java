@@ -10,5 +10,7 @@ public interface ScoreBoard {
 
     void finishMatch(String homeTeamName, String awayTeamName);
 
+    void updateScore(String homeTeamName, String awayTeamName, Integer homeTeamScore, Integer awayTeamScore);
+
     List<MatchInfo> getMatchesSummary();
 }

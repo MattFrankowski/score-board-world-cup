@@ -32,6 +32,11 @@ class WorldCupScoreBoard implements ScoreBoard {
     }
 
     @Override
+    public void updateScore(String homeTeamName, String awayTeamName, Integer homeTeamScore, Integer awayTeamScore) {
+
+    }
+
+    @Override
     public List<MatchInfo> getMatchesSummary() {
         return matches.entrySet()
                       .stream()

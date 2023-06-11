@@ -2,7 +2,6 @@ package scoreboard;
 
 import org.junit.jupiter.api.Test;
 import scoreboard.match.MatchInfo;
-import scoreboard.match.Score;
 
 import java.util.List;
 
@@ -71,5 +70,20 @@ class WorldCupScoreBoardTest {
         // then
         assertEquals(resultSummary.get(0).getScore().getAwayTeamScore(), 0);
         assertEquals(resultSummary.get(0).getScore().getHomeTeamScore(), 0);
+    }
+
+    @Test
+    void should_update_match_score() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+        scoreBoard.startMatch("Poland", "Argentina");
+
+        // when
+        scoreBoard.updateScore("Poland", "Argentina", 0, 1);
+        List<MatchInfo> resultSummary = scoreBoard.getMatchesSummary();
+
+        // then
+        assertEquals(resultSummary.get(0).getScore().getAwayTeamScore(), 0);
+        assertEquals(resultSummary.get(0).getScore().getHomeTeamScore(), 1);
     }
 }
