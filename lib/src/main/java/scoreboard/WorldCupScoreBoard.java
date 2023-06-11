@@ -25,7 +25,10 @@ class WorldCupScoreBoard implements ScoreBoard {
     @Override
     public void finishMatch(String homeTeamName, String awayTeamName) {
         MatchUp matchUp = new MatchUp(homeTeamName, awayTeamName);
-        matches.remove(matchUp);
+        if (matches.remove(matchUp) == null) {
+            throw new IllegalStateException(String.format("Cannot finish non-existent match: %s - %s",
+                                                          homeTeamName, awayTeamName));
+        }
     }
 
     @Override
