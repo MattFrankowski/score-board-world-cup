@@ -11,6 +11,10 @@ public class Team {
         this.code = name.toLowerCase();
     }
 
+    public String getCode() {
+        return code;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

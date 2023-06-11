@@ -2,6 +2,7 @@ package scoreboard.match;
 
 import scoreboard.match.team.Team;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MatchUp {
@@ -20,6 +21,10 @@ public class MatchUp {
 
     public Team getAwayTeam() {
         return awayTeam;
+    }
+
+    public List<Team> getSides() {
+        return List.of(homeTeam, awayTeam);
     }
 
     @Override

@@ -32,7 +32,7 @@ class WorldCupScoreBoardTest {
         // when & then
         Exception result = assertThrows(IllegalStateException.class,
                                         () -> scoreBoard.startMatch("Poland", "Argentina"));
-        assertEquals(result.getMessage(), "Cannot start a duplicate match: Poland - Argentina");
+        assertEquals(result.getMessage(), "Cannot start a match for a team that is already in game. Match: Poland - Argentina");
     }
 
     @Test

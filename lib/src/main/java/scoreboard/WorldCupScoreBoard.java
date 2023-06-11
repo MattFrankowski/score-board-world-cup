@@ -3,6 +3,7 @@ package scoreboard;
 import scoreboard.match.MatchInfo;
 import scoreboard.match.MatchUp;
 import scoreboard.match.Score;
+import scoreboard.match.team.Team;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -16,11 +17,30 @@ class WorldCupScoreBoard implements ScoreBoard {
     @Override
     public void startMatch(String homeTeamName, String awayTeamName) {
         MatchUp matchUp = new MatchUp(homeTeamName, awayTeamName);
-        if (matches.containsKey(matchUp)) {
-            throw new IllegalStateException(String.format("Cannot start a duplicate match: %s - %s",
+        if (isAnyTeamInMatch(homeTeamName, awayTeamName)) {
+            throw new IllegalStateException(String.format("Cannot start a match for a team that is already in game. Match: %s - %s",
                                                           homeTeamName, awayTeamName));
         }
         matches.put(matchUp, new Score());
+    }
+
+    private boolean isAnyTeamInMatch(String homeTeamName, String awayTeamName) {
+        return matches.keySet()
+                      .stream()
+                      .anyMatch(matchUp -> isAnyTeamInMatch(matchUp, homeTeamName, awayTeamName));
+    }
+
+    private boolean isAnyTeamInMatch(MatchUp inGameMatchUp, String homeTeamName, String awayTeamName) {
+        return inGameMatchUp.getSides()
+                            .stream()
+                            .map(Team::getCode)
+                            .anyMatch(teamInGameCode -> isAnyTeamEqualToCurrentlyPlayingTeam(teamInGameCode, homeTeamName,
+                                                                                             awayTeamName));
+    }
+
+    private static boolean isAnyTeamEqualToCurrentlyPlayingTeam(String teamInGameCode, String homeTeamName,
+                                                                String awayTeamName) {
+        return teamInGameCode.equalsIgnoreCase(homeTeamName) || teamInGameCode.equalsIgnoreCase(awayTeamName);
     }
 
     @Override
