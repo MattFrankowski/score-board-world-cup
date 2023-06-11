@@ -17,7 +17,7 @@ class WorldCupScoreBoard implements ScoreBoard {
     @Override
     public void startMatch(String homeTeamName, String awayTeamName) {
         MatchUp matchUp = new MatchUp(homeTeamName, awayTeamName);
-        if (AddMatchValidator.validate(matches, homeTeamName, awayTeamName)) {
+        if (AddMatchValidator.isAnyTeamInExistingMatch(matches, homeTeamName, awayTeamName)) {
             throw new IllegalStateException(String.format("Cannot start a match for a team that is already in game. Match: %s - %s",
                                                           homeTeamName, awayTeamName));
         }

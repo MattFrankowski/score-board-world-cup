@@ -12,18 +12,18 @@ public final class AddMatchValidator {
 
     }
 
-    public static boolean validate(Map<MatchUp, Score> matches, String homeTeamName, String awayTeamName) {
+    public static boolean isAnyTeamInExistingMatch(Map<MatchUp, Score> matches, String homeTeamName, String awayTeamName) {
         return matches.keySet()
                       .stream()
-                      .anyMatch(matchUp -> isAnyTeamInMatch(matchUp, homeTeamName, awayTeamName));
+                      .anyMatch(existingMatchUp -> isAnyTeamInExistingMatch(existingMatchUp, homeTeamName, awayTeamName));
     }
 
-    private static boolean isAnyTeamInMatch(MatchUp inGameMatchUp, String homeTeamName, String awayTeamName) {
-        return inGameMatchUp.getSides()
-                            .stream()
-                            .map(Team::getCode)
-                            .anyMatch(teamInGameCode -> isAnyTeamEqualToCurrentlyPlayingTeam(teamInGameCode, homeTeamName,
-                                                                                             awayTeamName));
+    private static boolean isAnyTeamInExistingMatch(MatchUp existingMatchUp, String homeTeamName, String awayTeamName) {
+        return existingMatchUp.getSides()
+                              .stream()
+                              .map(Team::getCode)
+                              .anyMatch(teamInGameCode -> isAnyTeamEqualToCurrentlyPlayingTeam(teamInGameCode, homeTeamName,
+                                                                                               awayTeamName));
     }
 
     private static boolean isAnyTeamEqualToCurrentlyPlayingTeam(String teamInGameCode, String homeTeamName,
