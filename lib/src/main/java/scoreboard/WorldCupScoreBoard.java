@@ -4,6 +4,7 @@ import scoreboard.match.MatchInfo;
 import scoreboard.match.MatchUp;
 import scoreboard.match.Score;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,12 @@ class WorldCupScoreBoard implements ScoreBoard {
         return matches.entrySet()
                       .stream()
                       .map(MatchInfo::new)
+                      .sorted(getSortingPolicy())
                       .toList();
+    }
+
+    @Override
+    public Comparator<MatchInfo> getSortingPolicy() {
+        return Comparator.comparingInt(MatchInfo::getTotalScore).reversed();
     }
 }

@@ -2,6 +2,7 @@ package scoreboard;
 
 import scoreboard.match.MatchInfo;
 
+import java.util.Comparator;
 import java.util.List;
 
 public interface ScoreBoard {
@@ -13,4 +14,6 @@ public interface ScoreBoard {
     void updateScore(String homeTeamName, String awayTeamName, Integer homeTeamScore, Integer awayTeamScore);
 
     List<MatchInfo> getMatchesSummary();
+
+    Comparator<MatchInfo> getSortingPolicy();
 }

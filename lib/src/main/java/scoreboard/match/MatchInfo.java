@@ -21,6 +21,10 @@ public class MatchInfo {
         return score;
     }
 
+    public Integer getTotalScore() {
+        return score.getTotalScore();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
