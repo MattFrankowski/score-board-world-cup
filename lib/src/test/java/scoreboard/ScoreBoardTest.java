@@ -32,4 +32,18 @@ class ScoreBoardTest {
                                         () -> scoreBoard.startMatch("Poland", "Argentina"));
         assertEquals(result.getMessage(), "Cannot start a duplicate match: Poland - Argentina");
     }
+
+    @Test
+    void should_finish_an_existing_match() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+        scoreBoard.startMatch("Poland", "Argentina");
+
+        // when
+        scoreBoard.finishMatch("Poland", "Argentina");
+        List<MatchInfo> resultSummary = scoreBoard.getMatchesSummary();
+
+        // then
+        assertEquals(resultSummary.size(), 0);
+    }
 }

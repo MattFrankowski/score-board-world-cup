@@ -8,5 +8,7 @@ public interface ScoreBoard {
 
     void startMatch(String homeTeamName, String awayTeamName);
 
+    void finishMatch(String homeTeamName, String awayTeamName);
+
     List<MatchInfo> getMatchesSummary();
 }
