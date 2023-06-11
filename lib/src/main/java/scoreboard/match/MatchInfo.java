@@ -37,4 +37,10 @@ public class MatchInfo {
     public int hashCode() {
         return Objects.hash(matchUp, score);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s - %s %s", matchUp.getHomeTeam().toString(), score.getHomeTeamScore().toString(),
+                             matchUp.getAwayTeam().toString(), score.getAwayTeamScore().toString());
+    }
 }

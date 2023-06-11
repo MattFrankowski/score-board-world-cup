@@ -41,4 +41,9 @@ public class Score {
     public int hashCode() {
         return Objects.hash(homeTeamScore, awayTeamScore);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s : %s", homeTeamScore, awayTeamScore);
+    }
 }
