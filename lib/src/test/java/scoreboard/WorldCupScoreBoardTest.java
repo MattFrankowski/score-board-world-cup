@@ -131,4 +131,17 @@ class WorldCupScoreBoardTest {
         assertEquals(resultSummary.get(2).getMatchUp(), new MatchUp("Poland", "Argentina"));
         assertEquals(resultSummary.get(2).getScore(), new Score(0, 1));
     }
+
+    @Test
+    void should_not_permit_to_start_a_match_for_a_team_already_playing() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+        scoreBoard.startMatch("Mexico", "Argentina");
+
+        // when & then
+        Exception result = assertThrows(IllegalStateException.class,
+                                        () -> scoreBoard.startMatch("Poland", "Argentina"));
+
+        assertEquals(result.getMessage(), "Cannot start a match for a team that is already in game. Match: Poland - Argentina");
+    }
 }
