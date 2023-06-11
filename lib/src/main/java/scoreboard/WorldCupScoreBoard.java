@@ -33,7 +33,8 @@ class WorldCupScoreBoard implements ScoreBoard {
 
     @Override
     public void updateScore(String homeTeamName, String awayTeamName, Integer homeTeamScore, Integer awayTeamScore) {
-
+        MatchUp matchUp = new MatchUp(homeTeamName, awayTeamName);
+        matches.put(matchUp, new Score(homeTeamScore, awayTeamScore));
     }
 
     @Override

@@ -12,6 +12,11 @@ public class Score {
         this.awayTeamScore = 0;
     }
 
+    public Score(Integer homeTeamScore, Integer awayTeamScore) {
+        this.homeTeamScore = homeTeamScore;
+        this.awayTeamScore = awayTeamScore;
+    }
+
     public Integer getHomeTeamScore() {
         return homeTeamScore;
     }
