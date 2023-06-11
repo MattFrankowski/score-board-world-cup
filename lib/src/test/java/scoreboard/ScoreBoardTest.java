@@ -20,4 +20,16 @@ class ScoreBoardTest {
         // then
         assertEquals(resultSummary.size(), 1);
     }
+
+    @Test
+    void should_not_permit_adding_duplicate_match() {
+        // given
+        ScoreBoard scoreBoard = new WorldCupScoreBoard();
+        scoreBoard.startMatch("Poland", "Argentina");
+
+        // when & then
+        Exception result = assertThrows(IllegalStateException.class,
+                                        () -> scoreBoard.startMatch("Poland", "Argentina"));
+        assertEquals(result.getMessage(), "Cannot start a duplicate match: Poland - Argentina");
+    }
 }
