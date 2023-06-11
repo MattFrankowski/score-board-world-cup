@@ -14,7 +14,11 @@ class WorldCupScoreBoard implements ScoreBoard {
 
     @Override
     public void startMatch(String homeTeamName, String awayTeamName) {
-        MatchUp matchUp = new MatchUp();
+        MatchUp matchUp = new MatchUp(homeTeamName, awayTeamName);
+        if (matches.containsKey(matchUp)) {
+            throw new IllegalStateException(String.format("Cannot start a duplicate match: %s - %s",
+                                                          homeTeamName, awayTeamName));
+        }
         matches.put(matchUp, new Score());
     }
 
